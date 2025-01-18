@@ -1,1 +1,1 @@
-# algomap
+# algo-map
