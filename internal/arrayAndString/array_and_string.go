@@ -72,3 +72,29 @@ func RomanToInt(s string) int {
 
 	return target
 }
+
+func IsSubsequence(s, t string) bool {
+	sLen := len(s)
+	tLen := len(t)
+	tPointer := 0
+
+	if sLen == 0 {
+		return true
+	}
+
+	if tLen == 0 {
+		return false
+	}
+
+	for i := 0; i < tLen; i++ {
+		if tPointer == sLen {
+			break
+		}
+
+		if t[i] == s[tPointer] {
+			tPointer++
+		}
+	}
+
+	return tPointer == sLen
+}

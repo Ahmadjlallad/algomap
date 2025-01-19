@@ -1,8 +1,9 @@
 package main
 
 import (
-	"github.com/Ahmadjlallad/algomap/internal/arrayAndString"
 	"testing"
+
+	"github.com/Ahmadjlallad/algomap/internal/arrayAndString"
 )
 
 // TestClosest Given an integer array nums of size n, return the number with the value closest to 0 in nums. If there are multiple answers, return the number with the largest value.
@@ -65,5 +66,23 @@ func TestRomanToInt(t *testing.T) {
 
 	if result := arrayAndString.RomanToInt("MCMXCIV"); result != 1994 {
 		t.Errorf("RomanToInt(%s) = %d, want %d", "MCMXCIV", result, 1994)
+	}
+}
+
+func TestIsSubsequence(t *testing.T) {
+	if result := arrayAndString.IsSubsequence("abc", "ahbgdc"); !result {
+		t.Errorf("IsSubsequence(%s, %s) = %t, want %t", "abc", "ahbgdc", result, true)
+	}
+
+	if result := arrayAndString.IsSubsequence("axc", "ahbgdc"); result {
+		t.Errorf("IsSubsequence(%s, %s) = %t, want %t", "axc", "ahbgdc", result, false)
+	}
+
+	if result := arrayAndString.IsSubsequence("b", "c"); result {
+		t.Errorf("IsSubsequence(%s, %s) = %t, want %t", "b", "c", result, false)
+	}
+
+	if result := arrayAndString.IsSubsequence("c", "c"); !result {
+		t.Errorf("IsSubsequence(%s, %s) = %t, want %t", "c", "c", result, true)
 	}
 }
