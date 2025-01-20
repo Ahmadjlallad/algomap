@@ -76,25 +76,76 @@ func RomanToInt(s string) int {
 func IsSubsequence(s, t string) bool {
 	sLen := len(s)
 	tLen := len(t)
-	tPointer := 0
+	sPointer := 0
 
 	if sLen == 0 {
 		return true
 	}
 
-	if tLen == 0 {
+	if sLen > tLen {
 		return false
 	}
 
 	for i := 0; i < tLen; i++ {
-		if tPointer == sLen {
+		if sPointer == sLen {
 			break
 		}
 
-		if t[i] == s[tPointer] {
-			tPointer++
+		if t[i] == s[sPointer] {
+			sPointer++
 		}
 	}
 
-	return tPointer == sLen
+	return sPointer == sLen
+}
+
+/*
+	func MaxProfit(prices []int) int {
+		length := len(prices)
+
+		if length == 0 {
+			return 0
+		}
+
+		buy := prices[0]
+		sell := 0
+		currentMax := 0
+		for i, price := range prices {
+			if price > buy && price > sell && currentMax <= (price-buy) {
+				sell = price
+				currentMax = sell - buy
+			} else if i != length-1 && price < buy {
+				buy = price
+				sell = 0
+			}
+		}
+
+		if sell == 0 && currentMax == 0 {
+			return 0
+		}
+
+		return currentMax
+	}
+*/
+func MaxProfit(prices []int) int {
+	if len(prices) <= 1 {
+		return 0
+	}
+
+	minPrice := prices[0]
+	maxProfit := 0
+
+	for _, price := range prices {
+		if price < minPrice {
+			minPrice = price
+		}
+
+		currentProfit := price - minPrice
+
+		if currentProfit > maxProfit {
+			maxProfit = currentProfit
+		}
+	}
+
+	return maxProfit
 }

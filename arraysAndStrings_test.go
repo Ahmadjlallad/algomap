@@ -86,3 +86,28 @@ func TestIsSubsequence(t *testing.T) {
 		t.Errorf("IsSubsequence(%s, %s) = %t, want %t", "c", "c", result, true)
 	}
 }
+
+// TestMaxProfit You are given an array prices where prices[i] is the price of a given stock on the ith day.
+// You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock.
+// Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.
+func TestMaxProfit(t *testing.T) {
+	if result := arrayAndString.MaxProfit([]int{7, 1, 5, 3, 6, 4}); result != 5 {
+		t.Errorf("MaxProfit([]int{7, 1, 5, 3, 6, 4}) = %d, want %d", result, 5)
+	}
+
+	if result := arrayAndString.MaxProfit([]int{7, 6, 4, 3, 1}); result != 0 {
+		t.Errorf("MaxProfit([]int{7,6,4,3,1}) = %d, want %d", result, 0)
+	}
+
+	if result := arrayAndString.MaxProfit([]int{2, 4, 1}); result != 2 {
+		t.Errorf("MaxProfit([]int{2,4,1}) = %d, want %d", result, 2)
+	}
+
+	if result := arrayAndString.MaxProfit([]int{2, 1, 2, 0, 1}); result != 1 {
+		t.Errorf("MaxProfit([]int{2,1,2,0,1}) = %d, want %d", result, 1)
+	}
+
+	if result := arrayAndString.MaxProfit([]int{3, 2, 6, 5, 0, 3}); result != 4 {
+		t.Errorf("MaxProfit([]int{3,2,6,5,0,3}) = %d, want %d", result, 4)
+	}
+}
