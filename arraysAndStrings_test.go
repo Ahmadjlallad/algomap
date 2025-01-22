@@ -111,3 +111,33 @@ func TestMaxProfit(t *testing.T) {
 		t.Errorf("MaxProfit([]int{3,2,6,5,0,3}) = %d, want %d", result, 4)
 	}
 }
+
+func TestLongestCommonPrefix(t *testing.T) {
+	if result := arrayAndString.LongestCommonPrefix([]string{"flower", "flow", "flight"}); result != "fl" {
+		t.Errorf("LongestCommonPrefix(%s) = %s, want %s", "[]stirng{\"flower\",\"flow\",\"flight\"}", result, "fl")
+	}
+
+	if result := arrayAndString.LongestCommonPrefix([]string{"dog", "racecar", "car"}); result != "" {
+		t.Errorf("LongestCommonPrefix(%s) = %s, want %s", "[]string{\"dog\",\"racecar\",\"car\"}", result, "")
+	}
+
+	if result := arrayAndString.LongestCommonPrefix([]string{"dog", "racecar", "car"}); result != "" {
+		t.Errorf("LongestCommonPrefix(%s) = %s, want %s", "[]string{\"dog\",\"racecar\",\"car\"}", result, "")
+	}
+
+	if result := arrayAndString.LongestCommonPrefix([]string{"racecar", "car"}); result != "" {
+		t.Errorf("LongestCommonPrefix(%s) = %s, want %s", "[]string{\"racecar\",\"car\"}", result, "")
+	}
+
+	if result := arrayAndString.LongestCommonPrefix([]string{""}); result != "" {
+		t.Errorf("LongestCommonPrefix(%s) = %s, want %s", "[]string{\"\"}", "", result)
+	}
+
+	if result := arrayAndString.LongestCommonPrefix([]string{"13", "133", "133"}); result != "13" {
+		t.Errorf("LongestCommonPrefix(%s) = %s, want %s", "[]string{\"13\", \"133\", \"133\"}", "13", result)
+	}
+
+	if result := arrayAndString.LongestCommonPrefix([]string{"", "13", "13"}); result != "" {
+		t.Errorf("LongestCommonPrefix(%s) = %s, want %s", "[]string{\"\", \"13\", \"13\"}", "", result)
+	}
+}

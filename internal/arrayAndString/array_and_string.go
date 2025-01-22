@@ -149,3 +149,36 @@ func MaxProfit(prices []int) int {
 
 	return maxProfit
 }
+
+func LongestCommonPrefix(strs []string) string {
+	length := len(strs)
+	prefix := ""
+	currentPrefix := ""
+	arrayIndex := 0
+	stringIndex := 0
+	for {
+		if arrayIndex >= length {
+			prefix += currentPrefix
+			arrayIndex = 0
+			stringIndex++
+			currentPrefix = ""
+		}
+
+		if len(strs[arrayIndex])-1 < stringIndex {
+			break
+		}
+
+		if currentPrefix == "" {
+			currentPrefix = string(strs[arrayIndex][stringIndex])
+		}
+
+		if string(strs[arrayIndex][stringIndex]) != currentPrefix {
+			break
+		}
+
+		currentPrefix = string(strs[arrayIndex][stringIndex])
+		arrayIndex++
+	}
+
+	return prefix
+}
