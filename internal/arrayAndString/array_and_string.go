@@ -1,6 +1,7 @@
 package arrayAndString
 
 import (
+	"fmt"
 	"math"
 )
 
@@ -181,4 +182,32 @@ func LongestCommonPrefix(strs []string) string {
 	}
 
 	return prefix
+}
+
+func SummaryRanges(nums []int) []string {
+	length := len(nums)
+	result := make([]string, 0, length)
+	current := nums[0]
+	i := 1
+	isConnected := false
+	for i < length {
+		if current+1 != nums[i] {
+			out := ""
+			if isConnected {
+				out = fmt.Sprintf("%d->%d", current, nums[i-1])
+			} else {
+				out = fmt.Sprintf("%d", current)
+			}
+
+			result = append(result, out)
+			current = nums[i]
+			isConnected = false
+		} else {
+			isConnected = true
+		}
+
+		i++
+	}
+
+	return result
 }

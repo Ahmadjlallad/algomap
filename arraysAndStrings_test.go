@@ -141,3 +141,30 @@ func TestLongestCommonPrefix(t *testing.T) {
 		t.Errorf("LongestCommonPrefix(%s) = %s, want %s", "[]string{\"\", \"13\", \"13\"}", "", result)
 	}
 }
+
+func TestSummaryRanges(t *testing.T) {
+	testCaseResult1 := []string{"0", "2->4", "6", "8->9"}
+	testCaseResult2 := []string{"0", "2->4", "6", "8->9"}
+	result := arrayAndString.SummaryRanges([]int{0, 1, 2, 4, 5, 7})
+
+	if len(result) != len(testCaseResult1) {
+		t.Errorf("SummaryRanges(%s) = %s, want %s", "[]int{0,1,2,4,5,7}", result, []string{"0", "2->4", "6", "8->9"})
+	}
+
+	for i, result := range result {
+		if result != testCaseResult1[i] {
+			t.Errorf("SummaryRanges(%s) = %s, want %s", "[]int{0,1,2,4,5,7}", result, []string{"0", "2->4", "6", "8->9"})
+		}
+	}
+
+	result = arrayAndString.SummaryRanges([]int{0, 2, 3, 4, 6, 8, 9})
+	if len(result) != len(testCaseResult1) {
+		t.Errorf("SummaryRanges(%s) = %s, want %s", "[]int{0, 1, 2, 4, 5, 7}", result, []string{"0", "2->4", "6", "8->9"})
+	}
+
+	for i, result := range result {
+		if result != testCaseResult2[i] {
+			t.Errorf("SummaryRanges(%s) = %s, want %s", "[]int{0, 1, 2, 4, 5, 7}", result, []string{"0", "2->4", "6", "8->9"})
+		}
+	}
+}
