@@ -186,28 +186,59 @@ func LongestCommonPrefix(strs []string) string {
 
 func SummaryRanges(nums []int) []string {
 	length := len(nums)
-	result := make([]string, 0, length)
-	current := nums[0]
-	i := 1
-	isConnected := false
-	for i < length {
-		if current+1 != nums[i] {
-			out := ""
-			if isConnected {
-				out = fmt.Sprintf("%d->%d", current, nums[i-1])
-			} else {
-				out = fmt.Sprintf("%d", current)
-			}
+	if length == 0 {
+		return []string{}
+	}
 
-			result = append(result, out)
-			current = nums[i]
-			isConnected = false
-		} else {
-			isConnected = true
+	result := make([]string, 0, length)
+	start := nums[0]
+	previous := nums[0]
+
+	for i := 1; i < length; i++ {
+		if previous+1 == nums[i] {
+			previous = nums[i]
+			continue
 		}
 
-		i++
+		if previous == start {
+			result = append(result, fmt.Sprintf("%d", start))
+		} else {
+			result = append(result, fmt.Sprintf("%d->%d", start, previous))
+		}
+
+		start = nums[i]
+		previous = nums[i]
+	}
+
+	if start == previous {
+		result = append(result, fmt.Sprintf("%d", start))
+	} else {
+		result = append(result, fmt.Sprintf("%d->%d", start, previous))
 	}
 
 	return result
+}
+
+func ProductExceptSelf(nums []int) []int {
+	numsLen := len(nums)
+	left := make([]int, numsLen)
+	right := make([]int, numsLen)
+	multiplier := 1
+
+	for i := 0; i < numsLen; i++ {
+		left[i] = multiplier
+		multiplier *= nums[i]
+	}
+
+	multiplier = 1
+	for i := numsLen - 1; i >= 0; i-- {
+		right[i] = multiplier
+		multiplier *= nums[i]
+	}
+
+	for i := 0; i < numsLen; i++ {
+		nums[i] = right[i] * left[i]
+	}
+
+	return nums
 }

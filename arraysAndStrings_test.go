@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/Ahmadjlallad/algomap/internal/arrayAndString"
@@ -143,28 +144,50 @@ func TestLongestCommonPrefix(t *testing.T) {
 }
 
 func TestSummaryRanges(t *testing.T) {
-	testCaseResult1 := []string{"0", "2->4", "6", "8->9"}
+	testCaseResult1 := []string{"0->2", "4->5", "7"}
 	testCaseResult2 := []string{"0", "2->4", "6", "8->9"}
+	testCaseResult3 := []string{}
 	result := arrayAndString.SummaryRanges([]int{0, 1, 2, 4, 5, 7})
 
 	if len(result) != len(testCaseResult1) {
-		t.Errorf("SummaryRanges(%s) = %s, want %s", "[]int{0,1,2,4,5,7}", result, []string{"0", "2->4", "6", "8->9"})
+		t.Errorf("SummaryRanges(%s) = %s, want %s", "[]int{0,1,2,4,5,7}", result, fmt.Sprint(testCaseResult1))
 	}
 
-	for i, result := range result {
-		if result != testCaseResult1[i] {
-			t.Errorf("SummaryRanges(%s) = %s, want %s", "[]int{0,1,2,4,5,7}", result, []string{"0", "2->4", "6", "8->9"})
+	for i, r := range result {
+		if r != testCaseResult1[i] {
+			t.Errorf("SummaryRanges(%s) = %s, want %s", "[]int{0,1,2,4,5,7}", r, testCaseResult1[i])
 		}
 	}
 
 	result = arrayAndString.SummaryRanges([]int{0, 2, 3, 4, 6, 8, 9})
-	if len(result) != len(testCaseResult1) {
-		t.Errorf("SummaryRanges(%s) = %s, want %s", "[]int{0, 1, 2, 4, 5, 7}", result, []string{"0", "2->4", "6", "8->9"})
+	if len(result) != len(testCaseResult2) {
+		t.Errorf("SummaryRanges(%s) = %s, want %s", "[]int{0, 2, 3, 4, 6, 8, 9}", result, testCaseResult2)
 	}
 
-	for i, result := range result {
-		if result != testCaseResult2[i] {
-			t.Errorf("SummaryRanges(%s) = %s, want %s", "[]int{0, 1, 2, 4, 5, 7}", result, []string{"0", "2->4", "6", "8->9"})
+	for i, r := range result {
+		if r != testCaseResult2[i] {
+			t.Errorf("SummaryRanges(%s) = %s, want %s", "[]int{0, 2, 3, 4, 6, 8, 9}", r, testCaseResult2[i])
+		}
+	}
+
+	result = arrayAndString.SummaryRanges([]int{})
+	if len(result) != len(testCaseResult3) {
+		t.Errorf("SummaryRanges(%s) = %s, want %s", "[]int{}", result, testCaseResult3)
+	}
+
+	for i, r := range result {
+		if r != testCaseResult3[i] {
+			t.Errorf("SummaryRanges(%s) = %s, want %s", "[]int{}", r, testCaseResult3[i])
+		}
+	}
+}
+
+func TestProductExceptSelf(t *testing.T) {
+	testCaseResult1 := []int{24, 12, 8, 6}
+	result1 := arrayAndString.ProductExceptSelf([]int{1, 2, 3, 4})
+	for i, result := range result1 {
+		if result != testCaseResult1[i] {
+			t.Errorf("ProductExceptSelf(%d) = %d, want %d", testCaseResult1[i], result, testCaseResult1[i])
 		}
 	}
 }
