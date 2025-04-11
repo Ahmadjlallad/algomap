@@ -242,3 +242,32 @@ func ProductExceptSelf(nums []int) []int {
 
 	return nums
 }
+
+// [[1,3],[2,6],[8,10],[15,18]]
+// [[1,6],[8,10],[15,18]]
+func Merge(intervals [][]int) [][]int {
+	var out [][]int
+	previous := 0
+	start_at := 0
+	for i := 1; i < len(intervals); i++ {
+		interval := intervals[i]
+		fmt.Println(previous)
+		if interval[0] >= intervals[previous][0] && interval[1] >= intervals[previous][1] {
+			previous = i
+			continue
+		}
+
+		if previous == start_at {
+			out = append(out, intervals[start_at])
+		} else {
+			out = append(out, []int{intervals[start_at][0], intervals[previous][1]})
+		}
+
+		previous = i
+		start_at = i
+	}
+
+	fmt.Println(out)
+
+	return out
+}
