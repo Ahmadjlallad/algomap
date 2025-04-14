@@ -193,18 +193,22 @@ func TestProductExceptSelf(t *testing.T) {
 }
 
 func TestMerge(t *testing.T) {
-	input := [][]int{{1, 3}, {2, 6}, {8, 10}, {15, 18}}
+	input := [][]int{{1, 3}, {8, 10}, {2, 6}, {15, 18}}
 	output := [][]int{{1, 6}, {8, 10}, {15, 18}}
 	result := arrayAndString.Merge(input)
 
 	if len(result) != len(output) {
+		fmt.Println(result)
 		t.Errorf("Merge(%s) = %s, want %s", fmt.Sprint(input), fmt.Sprint(result), fmt.Sprint(output))
+		return
 	}
 
 	for i, r := range result {
 		for j, rr := range r {
 			if rr != output[i][j] {
+				fmt.Println(result)
 				t.Errorf("Merge(%s) = %d, want %d", fmt.Sprint(input), rr, output[i][j])
+				return
 			}
 		}
 	}
@@ -214,13 +218,72 @@ func TestMerge(t *testing.T) {
 	result = arrayAndString.Merge(input)
 
 	if len(result) != len(output) {
+		fmt.Println(result)
+
 		t.Errorf("Merge(%s) = %s, want %s", fmt.Sprint(input), fmt.Sprint(result), fmt.Sprint(output))
+		return
 	}
 
 	for i, r := range result {
 		for j, rr := range r {
 			if rr != output[i][j] {
 				t.Errorf("Merge(%s) = %d, want %d", fmt.Sprint(input), rr, output[i][j])
+				return
+			}
+		}
+	}
+
+	input = [][]int{{1, 4}, {0, 4}}
+	output = [][]int{{0, 4}}
+	result = arrayAndString.Merge(input)
+
+	if len(result) != len(output) {
+		t.Errorf("Merge(%s) = %s, want %s", fmt.Sprint(input), fmt.Sprint(result), fmt.Sprint(output))
+		return
+	}
+
+	for i, r := range result {
+		for j, rr := range r {
+			if rr != output[i][j] {
+				t.Errorf("Merge(%s) = %d, want %d", fmt.Sprint(input), rr, output[i][j])
+				return
+			}
+		}
+	}
+
+	input = [][]int{{1, 4}, {1, 5}}
+	output = [][]int{{1, 5}}
+	result = arrayAndString.Merge(input)
+
+	if len(result) != len(output) {
+		t.Errorf("Merge(%s) = %s, want %s", fmt.Sprint(input), fmt.Sprint(result), fmt.Sprint(output))
+		return
+	}
+
+	for i, r := range result {
+		for j, rr := range r {
+			if rr != output[i][j] {
+				t.Errorf("Merge(%s) = %d, want %d", fmt.Sprint(input), rr, output[i][j])
+				return
+			}
+		}
+	}
+
+	input = [][]int{{1, 4}, {2, 3}}
+	output = [][]int{{1, 4}}
+	result = arrayAndString.Merge(input)
+
+	if len(result) != len(output) {
+		t.Errorf("Merge(%s) = %s, want %s", fmt.Sprint(input), fmt.Sprint(result), fmt.Sprint(output))
+		return
+	}
+
+	for i, r := range result {
+		for j, rr := range r {
+			if rr != output[i][j] {
+				fmt.Println(result)
+				t.Errorf("Merge(%s) = %d, want %d", fmt.Sprint(input), rr, output[i][j])
+				return
 			}
 		}
 	}
