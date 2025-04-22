@@ -279,3 +279,65 @@ func Merge(intervals [][]int) [][]int {
 
 	return out
 }
+
+// SpiralOrder
+// Input: matrix = [
+// [1,2,3,3],
+// [4,5,6,1],
+// [7,8,9,0]
+// [7,8,9,7]
+// ]
+// Output: [1,2,3,6,9,8,7,4,5]
+// row = 0, col++
+//
+// [
+// [4,5,6],
+// [7,8,9],
+// ]
+func SpiralOrder(matrix [][]int) []int {
+	n := len(matrix)
+	m := len(matrix[0])
+	out := make([]int, 0, n*m)
+	j, i := 0, 0
+	topWall := -1
+	bottomWall := n
+	leftWall := -1
+	rightWall := m
+
+	for len(out) < n*m {
+		for j < rightWall {
+			out = append(out, matrix[i][j])
+			j++
+		}
+
+		topWall++
+		rightWall--
+		j = rightWall
+		i = topWall + 1
+		for i < bottomWall {
+			out = append(out, matrix[i][j])
+			i++
+		}
+
+		i--
+		j--
+		bottomWall--
+		for j > leftWall {
+			out = append(out, matrix[i][j])
+			j--
+		}
+
+		leftWall++
+		j = leftWall
+		i = bottomWall - 1
+		for i > topWall {
+			out = append(out, matrix[i][j])
+			i--
+		}
+
+		j = leftWall + 1
+		i = topWall + 1
+	}
+
+	return out[:m*n]
+}
