@@ -341,3 +341,26 @@ func SpiralOrder(matrix [][]int) []int {
 
 	return out[:m*n]
 }
+
+// NOTE to be implemented
+//func Rotate(matrix [][]int) {
+//	iteration := 0
+//	n := len(matrix)
+//	_ := len(matrix[0])
+//	i := 0
+//	j := 0
+//	temp := -1
+//
+//	for iteration < 5 /*n*m-2 */ {
+//		val := matrix[i][j]
+//		if temp != -1 {
+//			val = temp
+//		}
+//
+//		toColumn := int(math.Abs(float64(i - n - 1)))
+//		toRow := temp
+//		// 0 - 4 - 1 = 3
+//		// j = 3
+//		// 1 - 4 - 1 = 2, j = 2
+//	}
+//}
